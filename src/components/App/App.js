@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import TeamMember from '../TeamMember';
+import FormModal from '../MemberForm/FormModal';
+import Form from '../MemberForm/Form';
 import './App.css';
 
 class App extends React.Component {
@@ -8,7 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       team: [],
-      loading: true
+      loading: true,
+      formOpen: false,
     };
   }
 
@@ -32,11 +35,19 @@ class App extends React.Component {
     });
   }
 
+  openForm = () => {
+    this.setState({ formOpen: true })
+  }
+
+  closeModal = () => {
+    this.setState({ formOpen: false });
+  }
+
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     }
-
+    const { formOpen }  = this.state;
     return (
       <div className="app">
         <div className="team-grid" />
@@ -51,7 +62,8 @@ class App extends React.Component {
           />
         ))}
         {/* Make this new team member link to your form! */}
-        <TeamMember id="new" name="Join us!" title="New Teammate" />
+        <TeamMember openForm={this.openForm} newButton id="new" name="Join us!" title="New Teammate" />
+        {formOpen ? <FormModal><Form placeholder="name" /></FormModal> : null}
       </div>
     );
   }

@@ -33,6 +33,7 @@ class TeamMember extends React.PureComponent {
           <h1 className="name">{this.props.name}</h1>
         </header>
         <div className="body">{this.props.story}</div>
+        {this.props.newButton ? <button onClick={this.props.openForm}>Join Us!</button> : null}
         <footer style={{ backgroundColor: this.props.favoriteColor }}>
           <div className="full-width-flex-box">
             <div className="one-third-flex-box stat">9.0</div>
