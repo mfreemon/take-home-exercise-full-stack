@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './FormModal.css';
+import './form.scss';
 
 
 
-const Form = ({ placeholder }) => {
+const Field = ({ placeholder, label, name, onChange }) => (
+  <div>
+    <label>{label}</label>
+    <input name={name} onChange={onChange} placeholder={placeholder} />
+  </div>
+);
+
+const Form = ({ formFields, handleChange, submitForm }) => {
   return (
-    <div className="container">
-      <input placeholder={placeholder}/>
+    <div classinfo="form-container">
+      <form onSubmit={submitForm} >
+        <span className="close">X</span>
+        {formFields.map(i =>
+          <Field
+            name={i.info}
+            onChange={handleChange}
+            placeholder={i.label}
+            label={i.label}
+          />
+        )}
+        <button type="submit">Submit</button>
+      </form>
     </div>
-  )
+  );
 }
 
 

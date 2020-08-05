@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import TeamMember from '../TeamMember';
 import FormModal from '../MemberForm/FormModal';
-import Form from '../MemberForm/Form';
+import FormContainer from '../MemberForm/FormContainer';
 import './App.css';
 
 class App extends React.Component {
@@ -47,11 +47,11 @@ class App extends React.Component {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     }
-    const { formOpen }  = this.state;
+    const { formOpen, team }  = this.state;
     return (
       <div className="app">
         <div className="team-grid" />
-        {this.state.team.map(member => (
+        {team.map(member => (
           <TeamMember
             key={member.id}
             name={`${member.firstName} ${member.lastName}`}
@@ -63,7 +63,7 @@ class App extends React.Component {
         ))}
         {/* Make this new team member link to your form! */}
         <TeamMember openForm={this.openForm} newButton id="new" name="Join us!" title="New Teammate" />
-        {formOpen ? <FormModal><Form placeholder="name" /></FormModal> : null}
+        {formOpen ? <FormModal><FormContainer /></FormModal> : null}
       </div>
     );
   }
