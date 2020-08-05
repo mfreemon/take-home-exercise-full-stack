@@ -28,6 +28,7 @@ class FormContainer extends Component {
   render(){
     return (
       <Form
+        {...this.props}
         submitForm={this.submitForm}
         formFields={formFields}
         handleChange={this.formChange}

@@ -35,12 +35,8 @@ class App extends React.Component {
     });
   }
 
-  openForm = () => {
-    this.setState({ formOpen: true })
-  }
-
-  closeModal = () => {
-    this.setState({ formOpen: false });
+  toggleModal = () => {
+    this.setState({ formOpen: !this.state.formOpen });
   }
 
   render() {
@@ -62,8 +58,8 @@ class App extends React.Component {
           />
         ))}
         {/* Make this new team member link to your form! */}
-        <TeamMember openForm={this.openForm} newButton id="new" name="Join us!" title="New Teammate" />
-        {formOpen ? <FormModal><FormContainer /></FormModal> : null}
+        <TeamMember openForm={this.toggleModal} newButton id="new" name="Join Us" title="New Teammate" />
+        {formOpen ? <FormModal><FormContainer closeModal={this.toggleModal} /></FormModal> : null}
       </div>
     );
   }

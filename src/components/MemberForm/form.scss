@@ -5,5 +5,38 @@
     right: 10px;
     position: absolute;
     top: 10px;
+    cursor: pointer;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      text-align: left;
+      margin-bottom: 3px;
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 5px;
+      color: rgb(52, 102, 242);
+    }
+  }
+
+  button {
+    background: rgb(7, 187, 135);
+    color: #fff;
+    width: 150px;
+    border-radius: 5px;
+    border: 0;
+    padding: 15px 5px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: museo-slab, sans-serif;
+    font-weight: 900;
+
+    &:hover{
+      background: rgb(255, 67, 105);
+    }
   }
 }

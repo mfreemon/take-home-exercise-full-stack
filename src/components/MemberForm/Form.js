@@ -5,17 +5,18 @@ import './form.scss';
 
 
 const Field = ({ placeholder, label, name, onChange }) => (
-  <div>
+  <div className="field">
     <label>{label}</label>
     <input name={name} onChange={onChange} placeholder={placeholder} />
   </div>
 );
 
-const Form = ({ formFields, handleChange, submitForm }) => {
+const Form = ({ formFields, handleChange, submitForm, closeModal }) => {
   return (
     <div className="form-container">
+      <h1>Complete the Form to Join Us!</h1>
       <form onSubmit={submitForm} >
-        <span className="close">X</span>
+        <span className="close" onClick={closeModal}>X</span>
         {formFields.map(i =>
           <Field
             name={i.info}
