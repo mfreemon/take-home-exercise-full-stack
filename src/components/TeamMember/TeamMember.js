@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './TeamMember.css';
+import './TeamMember.scss';
 import MatterEmptyAvatar from '../../assets/matter_empty_avatar.svg';
 
 class TeamMember extends React.PureComponent {
@@ -33,7 +33,8 @@ class TeamMember extends React.PureComponent {
           <h1 className="name">{this.props.name}</h1>
         </header>
         <div className="body">{this.props.story}</div>
-        {this.props.newButton ? <button onClick={this.props.openForm}>Join Us!</button> : null}
+        {this.props.newButton ?
+          <button className="join" onClick={this.props.openForm}>Join Us!</button> : null}
         <footer style={{ backgroundColor: this.props.favoriteColor }}>
           <div className="full-width-flex-box">
             <div className="one-third-flex-box stat">9.0</div>

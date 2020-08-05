@@ -8,6 +8,25 @@
   text-align: center;
   width: 359px;
   margin-bottom: 112px;
+
+  .join {
+    background: rgb(7, 187, 135);
+    color: #fff;
+    width: 150px;
+    border-radius: 5px;
+    border: 0;
+    padding: 15px 5px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    font-size: 20px;
+    font-family: museo-slab, sans-serif;
+    font-weight: 900;
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(255, 67, 105);
+    }
+  }
 }
 
 .avatar-container {

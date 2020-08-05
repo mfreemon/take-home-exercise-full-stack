@@ -13,7 +13,7 @@ const Field = ({ placeholder, label, name, onChange }) => (
 
 const Form = ({ formFields, handleChange, submitForm }) => {
   return (
-    <div classinfo="form-container">
+    <div className="form-container">
       <form onSubmit={submitForm} >
         <span className="close">X</span>
         {formFields.map(i =>
