@@ -3,7 +3,7 @@ import axios from 'axios';
 import TeamMember from '../TeamMember';
 import FormModal from '../MemberForm/FormModal';
 import FormContainer from '../MemberForm/FormContainer';
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
   constructor(props) {
