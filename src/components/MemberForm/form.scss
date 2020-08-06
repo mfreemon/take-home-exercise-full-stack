@@ -14,12 +14,17 @@
 
     label {
       text-align: left;
-      margin-bottom: 3px;
+      margin: 10px 0 3px;
     }
     input {
-      margin-bottom: 10px;
       padding: 5px;
       color: rgb(52, 102, 242);
+    }
+
+    .errMessage {
+      color: rgb(255, 67, 105);
+      text-align: left;
+      font-size: 12px;
     }
   }
 }
