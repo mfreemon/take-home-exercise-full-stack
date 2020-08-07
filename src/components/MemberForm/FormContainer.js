@@ -25,8 +25,7 @@ class FormContainer extends Component {
 
   formChange = (e) => {
     let value = e.target.value
-    let name = e.target.name;
-
+  
     this.setState({ [e.target.name] : value });
     if(value.length < 3){
       this.setState({
