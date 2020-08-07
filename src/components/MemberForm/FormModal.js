@@ -1,8 +1,6 @@
 import React from 'react';
 import './formModal.scss';
 
-
-
 const FormModal = ({ children }) => {
 
   return(
