@@ -7,6 +7,15 @@
     top: 10px;
     cursor: pointer;
   }
+  
+  .saveErr {
+    visibility: hidden;
+    color: rgb(255, 67, 105);
+    &.how {
+      color: red;
+      visibility: visible;
+    }
+  }
 
   .field {
     display: flex;

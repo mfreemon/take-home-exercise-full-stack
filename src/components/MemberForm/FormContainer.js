@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import Form from './Form';
-import formFields from './formFields';
 
 class FormContainer extends Component {
   constructor(){
@@ -27,16 +24,15 @@ class FormContainer extends Component {
   }
 
   formChange = (e) => {
-
     let value = e.target.value
     let name = e.target.name;
 
     this.setState({ [e.target.name] : value });
-    if(value.length < 4){
+    if(value.length < 3){
       this.setState({
         errMessage: {
           ...this.state.errMessage,
-          [e.target.name] : 'must be 4 chars long'
+          [e.target.name] : 'must be atleast 3 character long'
         }
       });
     } else {
@@ -52,7 +48,7 @@ class FormContainer extends Component {
   validateForm = (data) => {
     let invalid = 0;
     for(let i in data){
-      if(data[i].length < 4){
+      if(data[i].length < 3){
         invalid++
       }
     }
@@ -65,10 +61,9 @@ class FormContainer extends Component {
     let valid = this.validateForm(member)
 
     if(valid <= 0){
-      return axios.post('/form', member)
-      .then((response) => console.log(response));
+      return this.props.saveForm(member)
     } else {
-      alert('false man')
+      alert('You have errors on your form: Either the entries are not filled or you have not met the entry requirements.');
     }
   }
 
@@ -80,7 +75,6 @@ class FormContainer extends Component {
         {...this.props}
         err={errMessage}
         submitForm={this.submitForm}
-        formFields={formFields}
         handleChange={this.formChange}
       />
     )

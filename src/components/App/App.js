@@ -3,6 +3,7 @@ import axios from 'axios';
 import TeamMember from '../TeamMember';
 import FormModal from '../MemberForm/FormModal';
 import FormContainer from '../MemberForm/FormContainer';
+import formFields from '../MemberForm/formFields'
 import './App.scss';
 
 class App extends React.Component {
@@ -12,6 +13,7 @@ class App extends React.Component {
       team: [],
       loading: true,
       formOpen: false,
+      saveErr: false
     };
   }
 
@@ -39,11 +41,24 @@ class App extends React.Component {
     this.setState({ formOpen: !this.state.formOpen });
   }
 
+  displayErr = () => {
+    this.setState({ saveErr: true })
+  }
+
+  saveForm = (member) => {
+    axios.post('/form', member)
+    .then(response => {
+      this.fetchInitialData();
+      this.setState({ formOpen: false, saveErr: false });
+    })
+    .catch(error => this.displayErr());
+  }
+
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
     }
-    const { formOpen, team }  = this.state;
+    const { formOpen, team, saveErr }  = this.state;
     return (
       <div className="app">
         <div className="team-grid" />
@@ -59,7 +74,17 @@ class App extends React.Component {
         ))}
         {/* Make this new team member link to your form! */}
         <TeamMember openForm={this.toggleModal} newButton id="new" name="Join Us" title="New Teammate" />
-        {formOpen ? <FormModal><FormContainer closeModal={this.toggleModal} /></FormModal> : null}
+        {formOpen && (
+          <FormModal>
+            <FormContainer
+              saveErr={saveErr}
+              formFields={formFields}
+              closeModal={this.toggleModal}
+              saveForm={this.saveForm}
+            />
+          </FormModal>
+
+        )}
       </div>
     );
   }

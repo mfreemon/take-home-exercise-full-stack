@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize, Op } = require('sequelize');
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -41,5 +41,6 @@ TeamMember.init(
 
 module.exports = {
   sequelize,
-  TeamMember
+  TeamMember,
+  Op
 };

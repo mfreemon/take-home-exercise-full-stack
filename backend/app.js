@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { TeamMember } = require('./model');
+const { TeamMember, Op } = require('./model');
 
 const app = express();
 app.use(bodyParser.json());
@@ -11,8 +11,23 @@ app.get('/team', async (req, res, next) => {
 });
 
 app.post('/form', async (req, res) => {
- 
+
   const { firstName, lastName, title, story, favoriteColor, photoUrl } = req.body;
+  const existingUser = await TeamMember.findAll({
+    where: {
+      firstName: {
+        [Op.eq]: firstName
+      },
+      lastName: {
+        [Op.eq]: lastName
+      }
+    }
+  });
+
+  if(existingUser.length){
+    return res.status(409).send();
+  }
+
   const newMember = await new TeamMember({
     firstName,
     lastName,
@@ -21,6 +36,7 @@ app.post('/form', async (req, res) => {
     favoriteColor,
     photoUrl
   });
+
 
   try {
     await newMember.save()
